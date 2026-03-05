@@ -1,0 +1,34 @@
+{{/*
+    Bilingual Citation Shortcode for Zotero Better BibTeX JSON
+    
+    Creates a numbered superscript citation that links to the corresponding 
+    reference in the bibliography.
+    
+    Usage:
+      {{< cite "citationKey" >}}
+    
+    Parameters:
+      - citationKey: The citation key from Zotero (required)
+    
+    Notes:
+      - Requires a bibliography.json file in the same directory as the post
+      - Must be used with the {{< bibliography >}} shortcode at the end of the post
+      - The bibliography.json file should be exported from Zotero using Better BibTeX JSON format
+      - Supports both English and German through Hugo's i18n system
+  */}}
+  
+  {{- $key := .Get 0 -}}
+  {{- $resource := .Page.Resources.GetMatch "bibliography.json" -}}
+  {{- if $resource -}}
+    {{- $bibContent := $resource | transform.Unmarshal -}}
+    {{- $items := $bibContent.items -}}
+    {{- $citationIndex := 0 -}}
+    {{- range $index, $item := $items -}}
+      {{- if eq .citationKey $key -}}
+        {{- $citationIndex = add $index 1 -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if gt $citationIndex 0 -}}<a id="cite-{{ $citationIndex }}" href="#ref-{{ $citationIndex }}" class="citation"><sup>{{ $citationIndex }}</sup></a>{{- else -}}<span class="citation-error"><sup>?</sup></span>{{- end -}}
+  {{- else -}}
+    <span class="citation-error"><sup>?</sup></span>
+  {{- end -}}

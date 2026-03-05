@@ -1,0 +1,22 @@
+{{/*
+    External Link Shortcode
+    
+    Creates a link to an external website that opens in a new tab/window,
+    with proper security attributes.
+    
+    Usage:
+      {{< extlink "https://example.com" "Link text" >}}
+    
+    Parameters:
+      - First parameter: URL to link to (required)
+      - Second parameter: Link text to display (required)
+    
+    Example:
+      {{< extlink "https://github.com" "Visit GitHub" >}}
+      
+    Notes:
+      - Automatically adds target="_blank" to open in a new tab
+      - Includes rel="noopener noreferrer" for security
+      - Use for external links that should open in a new window
+  */}}
+  <a href="{{ .Get 0 }}" target="_blank" rel="noopener noreferrer">{{ .Get 1 }}</a>

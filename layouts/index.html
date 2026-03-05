@@ -1,0 +1,73 @@
+{{ define "main" }}
+
+<header class="article-header">
+    <h1>{{ .Title }}</h1>
+    <div class="article-subheader">{{ .Params.subtitle }}</div>
+</header>
+
+<div class="intro-content">
+    <div class="intro-text">
+        <div class="intro-description">
+            {{ .Content }}
+        </div>
+    </div>
+    <div class="intro-image">
+        {{ $image := resources.Get "avatar.jpg" }}
+        {{ with $image }}
+        {{ if eq .MediaType.SubType "svg" }}
+        <svg width="120" height="120">
+            <image width="120" height="120" href="{{ $image.RelPermalink }}" alt="{{ $.Site.Params.author.name }}" />
+        </svg>
+        {{ else }}
+        {{ $image1x := $image.Fill "240x240 webp q90" }}
+        {{ $image2x := $image.Fill "480x480 webp q90" }}
+        <img class="avatar" src="{{ $image1x.RelPermalink }}" srcset="{{ $image1x.RelPermalink }} 1x, {{ $image2x.RelPermalink }} 2x" alt="{{ $.Site.Params.author.name }}" width="120"
+            height="120" />
+        {{ end }}
+        {{ end }}
+    </div>
+</div>
+
+<div class="posts-section">
+    <div class="section-header">
+        <h2>{{ T "home.latest_posts" }}</h2>
+        {{ $pagesToShow := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+        {{ $posts := $pagesToShow.ByDate.Reverse }}
+        {{ if gt (len $posts) 3 }}
+        <a href="{{ "blog" | relURL }}" class="view-all">{{ T "home.view_all" }} →</a>
+        {{ end }}
+    </div>
+    <div class="post-list">
+        {{ range first 3 $posts }}
+        <div class="post-item">
+            <a href="{{ .RelPermalink }}" class="post-title">{{ .Title }}</a>
+            {{ with .Date }}
+            <span class="post-date">{{ . | time.Format ($.Site.Params.dateFormat | default "January 2, 2006") }}</span>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</div>
+
+{{ $featured := where .Site.RegularPages "Params.featured" true }}
+{{ if $featured }}
+<div class="posts-section">
+    <div class="section-header">
+        <h2>{{ T "home.featured_posts" }}</h2>
+        {{ if gt (len $featured) 3 }}
+        <a href="{{ "blog" | relURL }}" class="view-all">{{ T "home.view_all" }} →</a>
+        {{ end }}
+    </div>
+    <div class="post-list">
+        {{ range first 3 $featured }}
+        <div class="post-item">
+            <a href="{{ .RelPermalink }}" class="post-title">{{ .Title }}</a>
+            {{ with .Date }}
+            <span class="post-date">{{ . | time.Format ($.Site.Params.dateFormat | default "January 2, 2006") }}</span>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+{{ end }}

@@ -1,0 +1,60 @@
+{{ define "main" }}
+<header class="article-header">
+<h1>{{ .Title }}</h1>
+{{ with .Date }}
+<div class="article-subheader">
+    {{ $ISO_time := dateFormat "2006-01-02T15:04:05-07:00" . }}
+    <time datetime="{{ $ISO_time }}" itemprop="datePublished">
+    {{ . | time.Format ($.Site.Params.dateFormat | default "January 2, 2006") }}
+    </time>
+</div>
+{{ end }}
+</header>
+
+
+{{ if ne .Params.audio false }}
+{{ $slug := path.Dir .File.Path | path.Base }}
+{{ $src := printf "/audio/%s.mp3" $slug }}
+<div class="audio-player-wrapper">
+    <div class="audio-player">
+        <div class="audio-note">{{ T "single.audio_ai_generated" }}</div>
+        <div class="audio-controls">
+            <button class="play-button" aria-label="Play audio">
+                <svg class="play-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M8 5v14l11-7z"/>
+                </svg>
+                <svg class="pause-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+                <svg class="loading-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="31.4 31.4" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="progress-wrapper">
+                <div class="progress-bar">
+                    <div class="progress-indicator"></div>
+                </div>
+                <div class="time-display">
+                    <span class="current-time">0:00</span>
+                    <span class="duration">0:00</span>
+                </div>
+            </div>
+            <div class="speed-control">
+                <button class="speed-button" aria-label="Change playback speed">
+                    1.0x
+                </button>
+            </div>
+        </div>
+        <audio id="post-audio" preload="metadata">
+            <source src="{{ $src }}" type="audio/mpeg">
+            {{ T "single.audio_not_supported" }}
+        </audio>
+    </div>
+</div>
+{{ end }}
+
+<div class="article-content">
+{{ .Content }}
+</div>
+
+{{ end }}

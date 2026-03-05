@@ -1,0 +1,35 @@
+## HOME ##
+- id: "home.latest_posts"
+  translation: "Latest Posts"
+- id: "home.featured_posts"
+  translation: "Featured Posts"
+- id: "home.view_all"
+  translation: "All"
+
+## SINGLE POST ##
+- id: "single.audio_ai_generated"
+  translation: "AI-generated audio version"
+- id: "single.audio_not_supported"
+  translation: "Your browser does not support the audio element."
+- id: "single.references"
+  translation: "References"
+- id: "single.citation_error"
+  translation: "Citation error"
+
+## FOOTER ##
+- id: "footer.imprint"
+  translation: "Imprint & Privacy Policy"
+- id: "footer.email"
+  translation: "Email"
+
+## 404 PAGE ##
+- id: "404.title"
+  translation: "Page Not Found"
+- id: "404.subtitle"
+  translation: "Oops! This page seems to have wandered off."
+- id: "404.description"
+  translation: "The page you're looking for doesn't exist or has been moved."
+- id: "404.go_home"
+  translation: "Go to Homepage"
+- id: "404.recent_posts"
+  translation: "Recent Posts"

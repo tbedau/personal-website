@@ -1,0 +1,73 @@
+{{/*
+    Bilingual Bibliography Shortcode for Zotero Better BibTeX JSON
+    Creates a numbered bibliography in Nature journal style from a Zotero export file.
+    Supports both English and German through Hugo's i18n system.
+    Usage:
+    {{< bibliography >}}
+    Notes:
+    - Must be placed at the end of the post
+    - Requires a bibliography.json file in the same directory as the post
+    - The bibliography.json file should be exported from Zotero using Better BibTeX JSON format
+    - Works with the {{< cite >}} shortcode for in-text citations
+    - Formatting follows Nature journal style:
+    * Max 3 authors before "et al." abbreviation
+    * Uses journal abbreviations when available
+    * No bold text
+    * Includes DOI as clickable link
+    Workflow:
+    1. In Zotero, select references for your post
+    2. Right-click and choose "Export Collection"
+    3. Select "Better BibTeX JSON" as the format
+    4. Save the file as "bibliography.json" in your post's directory
+    5. Use {{< cite "key" >}} in your post where you want citations
+    6. Add {{< bibliography >}} at the end of your post
+    */}}
+   <div class="bibliography">
+     <h2>{{ i18n "single.references" }}</h2>
+     {{ $resource := .Page.Resources.GetMatch "bibliography.json" }}
+     {{ if $resource }}
+       {{ $bibContent := $resource | transform.Unmarshal }}
+       <ol>
+         {{ range $index, $item := $bibContent.items }}
+           {{ $refNum := add $index 1 }}
+           <li id="ref-{{ $refNum }}"> <!-- Using the index number instead of citation key -->
+             <a href="#cite-{{ $refNum }}" class="backref" aria-label="{{ i18n "single.back_to_text" | default "Back to text" }}">↩</a>
+             {{ if isset $item "creators" }}
+               {{ if gt (len $item.creators) 3 }}
+                 {{ range $authorIndex, $author := first 1 $item.creators }}
+                   {{ if eq $author.creatorType "author" }}
+                     {{ $author.lastName }}, {{ strings.SliceString $author.firstName 0 1 }}.
+                   {{ end }}
+                 {{ end }}
+                 et al.
+               {{ else }}
+                 {{ $authorCount := 0 }}
+                 {{ range $authorIndex, $author := $item.creators }}
+                   {{ if eq $author.creatorType "author" }}
+                     {{ if gt $authorCount 0 }}, {{ end }}
+                     {{ $author.lastName }}, {{ strings.SliceString $author.firstName 0 1 }}.
+                     {{ $authorCount = add $authorCount 1 }}
+                   {{ end }}
+                 {{ end }}
+               {{ end }}
+             {{ end }}
+             
+             {{ $item.title }}.
+             {{ if isset $item "journalAbbreviation" }}
+               <em>{{ $item.journalAbbreviation }}</em>
+             {{ else if isset $item "publicationTitle" }}
+               <em>{{ $item.publicationTitle }}</em>
+             {{ end }}
+             {{ if isset $item "volume" }} {{ $item.volume }},{{ end }}
+             {{ if isset $item "pages" }} {{ $item.pages }}{{ end }}
+             {{ if isset $item "date" }}({{ strings.SliceString $item.date 0 4 }}).{{ end }}
+             {{ if isset $item "DOI" }}
+               <a href="https://doi.org/{{ $item.DOI }}" target="_blank">https://doi.org/{{ $item.DOI }}</a>
+             {{ end }}
+           </li>
+         {{ end }}
+       </ol>
+     {{ else }}
+       <p class="bibliography-error">{{ i18n "single.citation_error" }}</p>
+     {{ end }}
+   </div>

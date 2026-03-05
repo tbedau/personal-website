@@ -1,0 +1,51 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Page title -->
+{{ $title := .Title }}
+{{ if .Params.metaTitle }}{{ $title = .Params.metaTitle }}{{ end }}
+{{ $fullTitle := printf "%s – %s" $title .Site.Title }}
+<title>{{ $fullTitle }}</title>
+
+<!-- Common metadata -->
+<meta property="og:title" content="{{ $fullTitle }}" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ $fullTitle }}" />
+<meta itemprop="name" content="{{ $fullTitle }}" />
+<meta name="application-name" content="{{ $fullTitle }}" />
+<meta property="og:site_name" content="{{ .Site.Params.sitename | default .Site.Title }}" />
+
+<!-- Description -->
+{{- $description := .Site.Params.description -}}
+{{- with .Params.description -}}
+  {{- $description = . -}}
+{{- end -}}
+{{- with $description -}}
+<meta name="description" content="{{ . | plainify | truncate 160 }}">
+<meta property="og:description" content="{{ . | plainify | truncate 160 }}" />
+<meta name="twitter:description" content="{{ . | plainify | truncate 160 }}" />
+<meta itemprop="description" content="{{ . | plainify | truncate 160 }}" />
+{{- end -}}
+
+<!-- Language -->
+<meta property="og:locale" content="{{ .Site.LanguageCode }}" />
+<meta name="language" content="{{ .Site.LanguageCode }}" />
+
+<!-- Alternate language versions -->
+{{ range .AllTranslations }}
+  <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{ end }}
+
+<!-- Featured image -->
+{{- $image := .Site.Params.ogimage -}}
+{{- with .Params.image -}}
+  {{- $image = . -}}
+{{- end -}}
+{{- with $image -}}
+<meta property="og:image" content="{{ . | absURL }}" />
+<meta name="twitter:image" content="{{ . | absURL }}" />
+<meta itemprop="image" content="{{ . | absURL }}" />
+{{- end -}}
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ .Permalink }}">

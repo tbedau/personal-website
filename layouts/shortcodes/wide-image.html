@@ -1,0 +1,26 @@
+{{/*
+    Wide Image Shortcode
+    
+    Creates a wide image that extends beyond the content width with optional caption.
+    
+    Usage:
+    {{< wide-image src="/path/to/image.jpg" alt="Alt text" caption="Optional caption text" >}}
+    
+    Parameters:
+    - src: Path to the image (required)
+    - alt: Alt text for the image (optional, defaults to "Image")
+    - caption: Caption text (optional)
+  */}}
+  
+  {{ $src := .Get "src" }}
+  {{ $alt := .Get "alt" | default "Image" }}
+  {{ $caption := .Get "caption" }}
+  
+  <figure class="wide-image-container">
+    <a href="{{ $src }}">
+      <img src="{{ $src }}" alt="{{ $alt }}">
+    </a>
+    {{ with $caption }}
+    <figcaption>{{ . }}</figcaption>
+    {{ end }}
+  </figure>

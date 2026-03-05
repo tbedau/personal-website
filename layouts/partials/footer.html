@@ -1,0 +1,15 @@
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-left">
+            <span class="copyright">© {{ now.Format "2006" }} {{ .Site.Title }}</span>
+            <span class="separator">·</span>
+            <a href="{{ "imprint-privacy-policy" | relURL }}" class="legal-link">{{ T "footer.imprint" }}</a>
+        </div>
+        <div class="footer-social">
+            <a href="mailto:{{ .Site.Params.email }}" class="social-link">{{ T "footer.email" }}</a>
+            <a href="{{ .Site.Params.linkedin }}" class="social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="{{ .Site.Params.twitter }}" class="social-link" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="{{ .Site.Params.github }}" class="social-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+    </div>
+</footer>

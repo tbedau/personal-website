@@ -1,0 +1,45 @@
+{{ define "main" }}
+<header class="article-header">
+    <h1>{{ .Title }}</h1>
+</header>
+
+<div class="projects-content">
+    {{ with .Content }}
+    <div class="projects-intro">
+        {{ . }}
+    </div>
+    {{ end }}
+    <div class="projects-list">
+        {{ range $project := .Params.projects }}
+        <div class="project-entry">
+            {{ with $project.image }}
+            {{ $path := strings.TrimPrefix "/" . }}
+            {{ $img := resources.Get $path }}
+            {{ if $img }}
+              {{ $img1x := $img.Resize "800x webp" }}
+              {{ $img2x := $img.Resize "1600x webp" }}
+              {{ $full := $img.Resize "2400x webp" }}
+              <a href="{{ $full.RelPermalink }}" class="project-image-link">
+                  <img src="{{ $img1x.RelPermalink }}" srcset="{{ $img1x.RelPermalink }} 1x, {{ $img2x.RelPermalink }} 2x" alt="{{ $project.name }}" class="project-image" loading="lazy" width="{{ $img1x.Width }}" height="{{ $img1x.Height }}">
+              </a>
+            {{ end }}
+            {{ end }}
+            <div class="project-text">
+                <div class="project-title-row">
+                    <span class="project-name">{{ .name }}</span>
+                    <a href="{{ .url }}" class="project-url" target="_blank" rel="noopener noreferrer">{{ .url | replaceRE "^https?://" "" | replaceRE "/$" "" }}</a>
+                </div>
+                <div class="project-meta">
+                    <span>{{ .year }}</span>
+                    <span class="project-meta-sep">/</span>
+                    <span>{{ .type }}</span>
+                    <span class="project-meta-sep">/</span>
+                    <span>{{ .stack }}</span>
+                </div>
+                <span class="project-description">{{ .description }}</span>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

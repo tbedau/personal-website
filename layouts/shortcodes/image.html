@@ -1,0 +1,30 @@
+{{/*
+    Regular Image Shortcode
+    
+    Creates a regular content-width image with optional caption.
+    
+    Usage:
+    {{< image src="/path/to/image.jpg" alt="Alt text" caption="Optional caption text" >}}
+    
+    Parameters:
+    - src: Path to the image (required)
+    - alt: Alt text for the image (optional, defaults to "Image")
+    - caption: Caption text (optional)
+    - width: Image width in pixels (optional)
+    - height: Image height in pixels (optional)
+  */}}
+
+  {{ $src := .Get "src" }}
+  {{ $alt := .Get "alt" | default "Image" }}
+  {{ $caption := .Get "caption" }}
+  {{ $width := .Get "width" }}
+  {{ $height := .Get "height" }}
+
+  <figure class="image-container">
+    <a href="{{ $src }}">
+      <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" decoding="async"{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }}>
+    </a>
+    {{ with $caption }}
+    <figcaption>{{ . }}</figcaption>
+    {{ end }}
+  </figure>

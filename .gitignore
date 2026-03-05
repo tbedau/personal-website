@@ -1,0 +1,6 @@
+public/
+resources/_gen/
+hugo_stats.json
+static/audio/
+.vscode/
+.DS_Store

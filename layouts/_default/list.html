@@ -1,0 +1,26 @@
+{{ define "main" }}
+<header class="article-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.subtitle }}
+    <div class="article-subheader">{{ . }}</div>
+    {{ end }}
+</header>
+<div class="blog-content">
+    {{ range .Pages.GroupByDate "2006" }}
+    <section class="blog-year">
+        <h2>{{ .Key }}</h2>
+        <div class="post-list">
+            {{ range .Pages }}
+            <div class="post-item">
+                <a href="{{ .RelPermalink }}" class="post-title">{{ .Title }}</a>
+                {{ with .Date }}
+                <span class="post-date">{{ . | time.Format ($.Site.Params.dateFormatShort | default "January 2")
+                    }}</span>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+</div>
+{{ end }}

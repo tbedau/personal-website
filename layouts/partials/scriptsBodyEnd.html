@@ -1,0 +1,21 @@
+<!-- Scripts that should load after the page content -->
+
+{{ if hugo.IsProduction }}
+  {{ $lightbox_script := resources.Get "js/lightbox.js" | minify | fingerprint }}
+  <script src="{{ $lightbox_script.RelPermalink }}" integrity="{{ $lightbox_script.Data.Integrity }}"></script>
+{{ else }}
+  {{ $lightbox_script := resources.Get "js/lightbox.js" }}
+  <script src="{{ $lightbox_script.RelPermalink }}"></script>
+{{ end }}
+
+{{ if .IsPage }}
+  {{ if ne .Params.audio false }}
+    {{ if hugo.IsProduction }}
+      {{ $audio_script := resources.Get "js/audio-player.js" | minify | fingerprint }}
+      <script src="{{ $audio_script.RelPermalink }}" integrity="{{ $audio_script.Data.Integrity }}"></script>
+    {{ else }}
+      {{ $audio_script := resources.Get "js/audio-player.js" }}
+      <script src="{{ $audio_script.RelPermalink }}"></script>
+    {{ end }}
+  {{ end }}
+{{ end }}

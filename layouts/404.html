@@ -1,0 +1,30 @@
+{{ define "main" }}
+<header class="article-header">
+    <h1>404 - {{ T "404.title" | default "Page Not Found" }}</h1>
+    <div class="article-subheader">{{ T "404.subtitle" | default "Oops! This page seems to have wandered off." }}</div>
+</header>
+<div class="intro-content">
+    <div class="intro-text">
+        <div class="intro-description">
+            <p>{{ T "404.description" | default "The page you're looking for doesn't exist or has been moved." }}</p>
+            <p><a href="{{ "/" | relURL }}">{{ T "404.go_home" | default "Go to Homepage" }} →</a></p>
+        </div>
+    </div>
+</div>
+<div class="posts-section">
+    <div class="section-header">
+        <h2>{{ T "404.recent_posts" | default "Recent Posts" }}</h2>
+    </div>
+    <div class="post-list">
+        {{ $pagesToShow := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+        {{ range first 3 ($pagesToShow.ByDate.Reverse) }}
+            <div class="post-item">
+                <a href="{{ .RelPermalink }}" class="post-title">{{ .Title }}</a>
+                {{ with .Date }}
+                    <span class="post-date">{{ . | time.Format ($.Site.Params.dateFormat | default "January 2, 2006") }}</span>
+                {{ end }}
+            </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
