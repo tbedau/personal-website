@@ -7,14 +7,13 @@ enableRobotsTXT: true
 params:
   sitename: Tillmann Bedau
   subtitle: "Pathology Resident | Turning messy workflows into reliable systems"
-  description: Personal website of Tillmann Bedau. Pathology resident, builder of tools, fixer of broken processes.
+  description: Pathologist and tinkerer in Cologne. I build software on the side and write about the things I learn along the way.
   author:
     name: Tillmann Bedau
   twitter: https://x.com/tillmannbedau
   linkedin: https://www.linkedin.com/in/tillmann-bedau/
   email: till.bedau@gmail.com
   github: https://github.com/tbedau
-  ogimage: /images/og-default.png
   mainSections: [blog]
   dateFormat: January 2, 2006
   dateFormatShort: January 2
