@@ -12,7 +12,7 @@
 </header>
 
 
-{{ if ne .Params.audio false }}
+{{ if and (eq .Section "blog") (ne .Params.audio false) }}
 {{ $slug := path.Dir .File.Path | path.Base }}
 {{ $src := printf "/audio/%s.mp3" $slug }}
 <div class="audio-player-wrapper">
