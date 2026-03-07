@@ -27,7 +27,6 @@
             <div class="project-text">
                 <div class="project-title-row">
                     <span class="project-name">{{ .name }}</span>
-                    <a href="{{ .url }}" class="project-url" target="_blank" rel="noopener noreferrer">{{ .url | replaceRE "^https?://" "" | replaceRE "/$" "" }}</a>
                 </div>
                 <div class="project-meta">
                     <span>{{ .year }}</span>
@@ -37,6 +36,7 @@
                     <span>{{ .stack }}</span>
                 </div>
                 <span class="project-description">{{ .description }}</span>
+                <a href="{{ .url }}" class="project-url" target="_blank" rel="noopener noreferrer">{{ .url | replaceRE "^https?://" "" | replaceRE "/$" "" }}</a>
             </div>
         </div>
         {{ end }}
