@@ -1,0 +1,61 @@
+{
+  "config": {
+    "id": "agent-skills-learning-bib",
+    "label": "BetterBibTeX JSON",
+    "preferences": {},
+    "options": {}
+  },
+  "version": {
+    "zotero": "7.0.12-beta.1+31bbf2acf",
+    "bbt": "7.0.5"
+  },
+  "collections": {},
+  "items": [
+    {
+      "key": "TRUHN2023",
+      "version": 1,
+      "itemType": "journalArticle",
+      "title": "Large language models should be used as scientific reasoning engines, not knowledge databases",
+      "abstractNote": "",
+      "date": "2023-12",
+      "language": "eng",
+      "libraryCatalog": "PubMed",
+      "extra": "PMID: 37884765",
+      "volume": "29",
+      "pages": "2983-2984",
+      "publicationTitle": "Nature Medicine",
+      "DOI": "10.1038/s41591-023-02594-z",
+      "issue": "12",
+      "journalAbbreviation": "Nat Med",
+      "ISSN": "1546-170X",
+      "creators": [
+        {
+          "firstName": "Daniel",
+          "lastName": "Truhn",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Jorge S.",
+          "lastName": "Reis-Filho",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Jakob Nikolas",
+          "lastName": "Kather",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-03-17T00:00:00Z",
+      "dateModified": "2026-03-17T00:00:00Z",
+      "uri": "",
+      "itemID": 1,
+      "attachments": [],
+      "notes": [],
+      "citationKey": "truhnLargeLanguageModels2023",
+      "itemKey": "TRUHN2023",
+      "libraryID": 1
+    }
+  ]
+}
