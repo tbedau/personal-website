@@ -37,6 +37,14 @@ jobs:
 
       - run: hugo --minify
 
+      # Join the tailnet so we can SSH to the VPS (public SSH is closed).
+      # The auth key is reusable + ephemeral, so the runner auto-disappears
+      # from the tailnet when the job ends.
+      - name: Connect to tailnet
+        uses: tailscale/github-action@v3
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
       - name: Deploy via rsync
         uses: burnett01/rsync-deployments@7.0.1
         with:
