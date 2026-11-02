@@ -1,13 +1,18 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "personal-website",
+  "main": "worker/index.js",
   "compatibility_date": "2026-11-01",
-  // Static Hugo output only; no Worker script.
+  // Hugo output served as static assets. The Worker script only runs for
+  // /audio/* to add HTTP Range support; everything else skips it.
   "assets": {
     "directory": "./public",
+    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/audio/*"]
   },
+  "workers_dev": false,
   "routes": [
     { "pattern": "tillmannbedau.com", "custom_domain": true }
   ]
