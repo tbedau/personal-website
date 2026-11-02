@@ -44,7 +44,7 @@ The content published on this website reflects my personal opinion only and not 
 
 ### General Information
 
-Protecting your personal data is important to me. This website does not process any personal data, does not set cookies, and does not use tracking or analytics tools.
+Protecting your personal data is important to me. This website only processes the technical data needed to deliver it (see below). It does not set cookies and does not use tracking or analytics tools.
 
 ### Collection and Storage of Personal Data
 
@@ -57,11 +57,13 @@ When visiting this website, the web server automatically collects technical data
 - Referrer URL (previously visited page)
 - IP address (possibly anonymized by the hosting provider)
 
-This data is not stored or shared and is only used for the technical operation of the website.
+This data is only used to deliver the website and keep it secure. I do not store it or use it for any other purpose. It is processed by the hosting provider described below.
 
 ### Hosting
 
-This website is hosted on a server provided by Hetzner Online GmbH in Germany. The privacy policy of Hetzner applies: [https://www.hetzner.com/legal/privacy-policy](https://www.hetzner.com/legal/privacy-policy).
+This website is hosted by Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA, through its Cloudflare Workers service. Cloudflare delivers the pages from its worldwide network, so your request may be handled by a server outside the EU. Cloudflare processes the technical data listed above on my behalf, under a data processing agreement, to deliver the website and protect it from attacks. The legal basis is Art. 6(1)(f) GDPR: my legitimate interest in a website that loads quickly and works reliably.
+
+Cloudflare is certified under the EU-U.S. Data Privacy Framework, which the European Commission has found to ensure an adequate level of data protection for transfers to certified US companies. Cloudflare's privacy policy applies: [https://www.cloudflare.com/privacypolicy/](https://www.cloudflare.com/privacypolicy/).
 
 ### Use of Local Storage for Theme Settings
 
@@ -81,7 +83,7 @@ This website does not integrate external services, social media plugins, or anal
 
 ### Your Rights
 
-Since no personal data is collected or stored, there are no rights to access, correction, or deletion. However, if you have any questions about data protection, you can contact me via the email address provided in the imprint.
+Under the GDPR you have the right to access, correct, delete, or restrict the processing of your personal data, to object to its processing, and to data portability. You also have the right to lodge a complaint with a data protection supervisory authority. I do not store any personal data myself, but if you have questions about data protection, you can contact me via the email address provided in the imprint.
 
 ### Changes to this Privacy Policy
 
