@@ -3,6 +3,14 @@ title: "Projects"
 layout: "projects"
 metaTitle: "Projects"
 projects:
+  - name: "oncolabels"
+    description: "Every EU-approved indication of cancer drugs other than classic chemotherapy, with the biomarker and cut-off it requires. Read from the EMA labels by AI and checked against EMA every morning."
+    url: "https://oncolabels.com/"
+    image: "/images/projects/oncolabels.png"
+    year: "2026"
+    type: "Web App"
+    stack: "TypeScript, React, Cloudflare Workers"
+
   - name: "WHO Blue Books Skills"
     description: "An Agent Skill that turns the WHO Classification of Tumours into active learning experiences for pathologists."
     url: "https://github.com/tbedau/who-blue-books-skills"
@@ -34,6 +42,14 @@ projects:
     year: "2025"
     type: "Web App"
     stack: "Python, HTMX, Meilisearch"
+
+  - name: "Photolog"
+    description: "A small site where I (try to) post one photo a day. Each hand-picked photo gets the whole screen to itself, in a timeline you scroll through by day and an archive that shows them all as a gallery."
+    url: "https://photolog.tillmannbedau.com/"
+    image: "/images/projects/photolog.png"
+    year: "2024"
+    type: "Web App"
+    stack: "TypeScript, Hono, Cloudflare Workers"
 ---
 
 Things I've built, mostly to scratch my own itch. Each of these started because something wasn't working the way it should and I wanted to see if I could fix it.

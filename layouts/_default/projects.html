@@ -16,11 +16,14 @@
             {{ $path := strings.TrimPrefix "/" . }}
             {{ $img := resources.Get $path }}
             {{ if $img }}
-              {{ $img1x := $img.Resize "800x webp" }}
-              {{ $img2x := $img.Resize "1600x webp" }}
+              {{/* The thumbnail is 12rem wide, or the full width below 640px (main.scss), so the browser
+                   picks the smallest of these that is sharp enough. The lightbox opens the large one. */}}
+              {{ $small := $img.Resize "400x webp" }}
+              {{ $medium := $img.Resize "800x webp" }}
+              {{ $large := $img.Resize "1200x webp" }}
               {{ $full := $img.Resize "2400x webp" }}
               <a href="{{ $full.RelPermalink }}" class="project-image-link">
-                  <img src="{{ $img1x.RelPermalink }}" srcset="{{ $img1x.RelPermalink }} 1x, {{ $img2x.RelPermalink }} 2x" alt="{{ $project.name }}" class="project-image" loading="lazy" width="{{ $img1x.Width }}" height="{{ $img1x.Height }}">
+                  <img src="{{ $medium.RelPermalink }}" srcset="{{ $small.RelPermalink }} 400w, {{ $medium.RelPermalink }} 800w, {{ $large.RelPermalink }} 1200w" sizes="(max-width: 640px) 100vw, 12rem" alt="{{ $project.name }}" class="project-image" loading="lazy" width="{{ $medium.Width }}" height="{{ $medium.Height }}">
               </a>
             {{ end }}
             {{ end }}
